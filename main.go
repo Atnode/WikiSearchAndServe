@@ -62,10 +62,7 @@ func init() {
 	tplBox := rice.MustFindBox("templates")
 
 	registerTemplate("index", tplBox)
-	registerTemplate("browse", tplBox)
-	registerTemplate("search", tplBox)
 	registerTemplate("searchResult", tplBox)
-	registerTemplate("about", tplBox)
 }
 
 // registerTemplate load template from rice box and add them to a map[string] call templates
@@ -123,12 +120,9 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// tpl
-	http.HandleFunc("/search/", makeGzipHandler(searchHandler))
-	http.HandleFunc("/browse/", makeGzipHandler(browseHandler))
-	http.HandleFunc("/about/", makeGzipHandler(aboutHandler))
+	// tpl)
 	http.HandleFunc("/robots.txt", robotHandler)
-	http.HandleFunc("/", makeGzipHandler(homeHandler))
+	http.HandleFunc("/", makeGzipHandler(searchHandler))
 
 	// the need for a cache is absolute
 	// a lot of the same urls will be called repeatedly, css, js ...

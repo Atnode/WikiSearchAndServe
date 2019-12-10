@@ -88,40 +88,6 @@ func zimHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// homeHandler is displaying the / page but redirect every other requests to /zim/xxx
-// some zim files have / hardcoded in their pages
-func homeHandler(w http.ResponseWriter, r *http.Request) {
-	var mainURL string
-
-	if r.URL.Path != "/" {
-		http.Redirect(w, r, "/zim"+r.URL.Path, http.StatusMovedPermanently)
-		return
-	}
-
-	mainPage, err := Z.MainPage()
-	var hasMainPage bool
-
-	if err != nil && mainPage != nil {
-		hasMainPage = true
-		mainURL = "/zim/" + mainPage.FullURL()
-	}
-
-	d := map[string]interface{}{
-		"Path":        path.Base(*zimPath),
-		"Count":       strconv.Itoa(int(Z.ArticleCount)),
-		"IsIndexed":   idx,
-		"HasMainPage": hasMainPage,
-		"MainURL":     mainURL,
-	}
-	templates["index"].Execute(w, d)
-}
-
-func aboutHandler(w http.ResponseWriter, r *http.Request) {
-
-	d := map[string]interface{}{}
-	templates["about"].Execute(w, d)
-}
-
 func searchHandler(w http.ResponseWriter, r *http.Request) {
 	pageString := r.FormValue("page")
 	pageNumber, _ := strconv.Atoi(pageString)
@@ -140,7 +106,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if q == "" {
-		templates["search"].Execute(w, d)
+		templates["index"].Execute(w, d)
 		return
 	}
 	itemCount := 20
@@ -185,55 +151,6 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	templates["searchResult"].Execute(w, d)
-}
-
-// browseHandler is browsing the zim page per page
-func browseHandler(w http.ResponseWriter, r *http.Request) {
-	var page, previousPage, nextPage int
-
-	p := r.URL.Query().Get("page")
-	if p != "" {
-		page, _ = strconv.Atoi(p)
-	}
-
-	if page*ArticlesPerPage-1 >= int(Z.ArticleCount) {
-		http.NotFound(w, r)
-		return
-	}
-
-	Articles := make([]*zim.Article, ArticlesPerPage)
-	var pos int
-	for i := page * ArticlesPerPage; i < page*ArticlesPerPage+ArticlesPerPage; i++ {
-		a, err := Z.ArticleAtURLIdx(uint32(i))
-		if err != nil {
-			continue
-		}
-		if a.Title == "" {
-			a.Title = a.FullURL()
-		}
-		Articles[pos] = a
-		pos++
-	}
-
-	if page == 0 {
-		previousPage = 0
-	} else {
-		previousPage = page - 1
-	}
-
-	if page*ArticlesPerPage-1 >= int(Z.ArticleCount) {
-		nextPage = page
-	} else {
-		nextPage = page + 1
-	}
-
-	d := map[string]interface{}{
-		"Page":         page,
-		"PreviousPage": previousPage,
-		"NextPage":     nextPage,
-		"Articles":     Articles,
-	}
-	templates["browse"].Execute(w, d)
 }
 
 func robotHandler(w http.ResponseWriter, r *http.Request) {
