@@ -7,7 +7,7 @@ import (
 	"path"
 	"strconv"
 
-	"github.com/akhenakh/gozim"
+	zim "github.com/akhenakh/gozim"
 	"github.com/blevesearch/bleve"
 )
 
@@ -123,34 +123,30 @@ func aboutHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func searchHandler(w http.ResponseWriter, r *http.Request) {
-    pageString := r.FormValue("page")
-    pageNumber, _ := strconv.Atoi(pageString)
-    previousPage := pageNumber - 1
+	pageString := r.FormValue("page")
+	pageNumber, _ := strconv.Atoi(pageString)
+	previousPage := pageNumber - 1
 	if pageNumber == 0 {
 		previousPage = 0
 	}
-    nextPage := pageNumber + 1
+	nextPage := pageNumber + 1
 	q := r.FormValue("search_data")
 	d := map[string]interface{}{
-        "Query": q,
-		"Path": path.Base(*zimPath),
+		"Query":        q,
+		"Path":         path.Base(*zimPath),
 		"Page":         pageNumber,
 		"PreviousPage": previousPage,
 		"NextPage":     nextPage,
 	}
 
-	if !idx {
-		templates["searchNoIdx"].Execute(w, d)
-		return
-	}
 	if q == "" {
 		templates["search"].Execute(w, d)
 		return
 	}
-    itemCount := 20
-    from := itemCount * pageNumber
-    query := bleve.NewQueryStringQuery(q)
-    search := bleve.NewSearchRequestOptions(query, itemCount, from, false)
+	itemCount := 20
+	from := itemCount * pageNumber
+	query := bleve.NewQueryStringQuery(q)
+	search := bleve.NewSearchRequestOptions(query, itemCount, from, false)
 	search.Fields = []string{"Title"}
 
 	sr, err := index.Search(search)

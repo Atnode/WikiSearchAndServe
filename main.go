@@ -64,7 +64,6 @@ func init() {
 	registerTemplate("index", tplBox)
 	registerTemplate("browse", tplBox)
 	registerTemplate("search", tplBox)
-	registerTemplate("searchNoIdx", tplBox)
 	registerTemplate("searchResult", tplBox)
 	registerTemplate("about", tplBox)
 }
