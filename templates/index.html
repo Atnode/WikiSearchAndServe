@@ -55,9 +55,17 @@
     <script>
     $('div.jswarning').css('display','none');
     $('div.main').css('visibility','visible');
+
+	var lang = window.navigator.languages ? window.navigator.languages[0] : null;
+    lang = lang || window.navigator.language || window.navigator.browserLanguage || window.navigator.userLanguage;
+	if (lang.indexOf('-') !== -1)
+    lang = lang.split('-')[0];
+	if (lang.indexOf('_') !== -1)
+    lang = lang.split('_')[0];
+
     $(document).ready(function() {
-					$.MultiLanguage('/static/i18n/lang.json', 'fr')
-    	});
+		$.MultiLanguage('/static/i18n/lang.json', lang)
+    });
 </script>
   </body>
 </html>
