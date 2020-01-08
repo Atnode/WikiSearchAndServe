@@ -127,7 +127,9 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if sr.Total > 0 {
-		d["Info"] = fmt.Sprintf("%d matches for query [%s], took %s", sr.Total, q, sr.Took)
+		d["Nbresult"] = fmt.Sprintf("%d", sr.Total)
+		d["Namequery"] = fmt.Sprintf("[%s]", q)
+		d["Searchtime"] = fmt.Sprintf("%s", sr.Took)
 
 		// Constructs a list of Hits
 		var l []map[string]string
