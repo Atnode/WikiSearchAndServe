@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"path"
 	"strconv"
+	"strings"
 
 	zim "github.com/akhenakh/gozim"
 	"github.com/blevesearch/bleve"
@@ -88,6 +89,10 @@ func zimHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func removeExt(fn string) string {
+	return strings.TrimSuffix(fn, path.Ext(fn))
+}
+
 func searchHandler(w http.ResponseWriter, r *http.Request) {
 	pageString := r.FormValue("page")
 	pageNumber, _ := strconv.Atoi(pageString)
@@ -99,7 +104,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	q := r.FormValue("search_data")
 	d := map[string]interface{}{
 		"Query":        q,
-		"Path":         path.Base(*zimPath),
+		"Filename":     removeExt(*zimPath),
 		"Page":         pageNumber,
 		"PreviousPage": previousPage,
 		"NextPage":     nextPage,
