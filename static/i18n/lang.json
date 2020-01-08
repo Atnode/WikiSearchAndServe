@@ -1,0 +1,26 @@
+{
+    "config": {
+        "default": "en"
+    },
+    "language": {
+        "en": {
+            "#title": "Search into",
+            "#ex-title": "Examples of search terms",
+            "#ex-word": "Word: <code>water</code>",
+            "#ex-sentence": "Sentence: <code>\"light beer\"</code>",
+            "#ex-requiredexcluded": "Word required and word excluded: <code>+water -light beer</code> will perform a search that MUST match the term water, MUST NOT match the term light and MUST match the term beer.",
+            "#btn-search": "<i aria-hidden=\"true\" class=\"fa fa-search fa-fw\"></i> Search"
+
+        },
+        "fr": {
+            "#title": "Rechercher dans",
+            "#ex-title": "Exemples de termes de recherche",
+            "#ex-word": "Mot : <code>eau</code>",
+            "#ex-sentence": "Phrase : <code>\"bière légère\"</code>",
+            "#ex-requiredexcluded": "Mot requis et mot exclus : <code>+eau -légère bière</code> effectuera une recherche qui DOIT correspondre au terme eau, NE DOIT PAS correspondre au terme légère et DOIT correspondre au terme bière.",
+            "#btn-search": "<i aria-hidden=\"true\" class=\"fa fa-search fa-fw\"></i> Rechercher"
+
+
+        }
+    }
+}
