@@ -272,7 +272,7 @@ a:hover {
 }
 
 * {
-	scrollbar-color: #4d5158a9 #58595a;
+	scrollbar-color: #4d5158a9 #a4a7a8;
 }
 
 *, ::after, ::before {
@@ -284,7 +284,7 @@ a:hover {
   }
   
 ::-webkit-scrollbar-track {
-    background: #4d5158;
+    background: #a4a7a8;
   }
   
 ::-webkit-scrollbar-thumb {
