@@ -101,6 +101,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		previousPage = 0
 	}
 	nextPage := pageNumber + 1
+
 	q := r.FormValue("search_data")
 	d := map[string]interface{}{
 		"Query":        q,
@@ -124,6 +125,18 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return
+	}
+
+	if (20 * (pageNumber + 1)) > int(sr.Total) {
+		d["Next"] = 0
+	} else {
+		d["Next"] = 1
+	}
+
+	if pageNumber < 1 {
+		d["Previous"] = 0
+	} else {
+		d["Previous"] = 1
 	}
 
 	if sr.Total > 0 {
@@ -153,7 +166,9 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 		d["Hits"] = l
 
 	} else {
-		d["Info"] = fmt.Sprintf("No match for [%s], took %s", q, sr.Took)
+		d["Nbresult"] = fmt.Sprintf("%d", sr.Total)
+		d["Namequery"] = fmt.Sprintf("[%s]", q)
+		d["Searchtime"] = fmt.Sprintf("%s", sr.Took)
 		d["Hits"] = 0
 	}
 
