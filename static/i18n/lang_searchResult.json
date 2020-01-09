@@ -8,26 +8,14 @@
             "#search-info-1": "result(s) for the query",
             "#search-info-2": "in",
             "#result-title": "Title",
-            "#result-score": "Score",
-            "#btn-previous-1": "<i aria-hidden=\"true\" class=\"fa fa-arrow-circle-left fa-fw\"></i> Previous",
-            "#btn-next-1": "<i aria-hidden=\"true\" class=\"fa fa-arrow-circle-right fa-fw\"></i>  Next",
-            "#btn-home-1": "<i aria-hidden=\"true\" class=\"fa fa-home fa-fw\"></i> Home",
-            "#btn-previous-2": "<i aria-hidden=\"true\" class=\"fa fa-arrow-circle-left fa-fw\"></i> Previous",
-            "#btn-next-2": "<i aria-hidden=\"true\" class=\"fa fa-arrow-circle-right fa-fw\"></i>  Next",
-            "#btn-home-2": "<i aria-hidden=\"true\" class=\"fa fa-home fa-fw\"></i> Home"
+            "#result-score": "Score"
         },
         "fr": {
             "#title": "Rechercher dans",
             "#search-info-1": "résultat(s) pour la recherche",
             "#search-info-2": "en",
             "#result-title": "Titre",
-            "#result-score": "Score",
-            "#btn-previous-1": "<i aria-hidden=\"true\" class=\"fa fa-arrow-circle-left fa-fw\"></i> Précédent",
-            "#btn-next-1": "<i aria-hidden=\"true\" class=\"fa fa-arrow-circle-right fa-fw\"></i>  Suivant",
-            "#btn-home-1": "<i aria-hidden=\"true\" class=\"fa fa-home fa-fw\"></i> Accueil",
-            "#btn-previous-2": "<i aria-hidden=\"true\" class=\"fa fa-arrow-circle-left fa-fw\"></i> Précédent",
-            "#btn-next-2": "<i aria-hidden=\"true\" class=\"fa fa-arrow-circle-right fa-fw\"></i>  Suivant",
-            "#btn-home-2": "<i aria-hidden=\"true\" class=\"fa fa-home fa-fw\"></i> Accueil"
+            "#result-score": "Score"
         }
     }
 }
