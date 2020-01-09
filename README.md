@@ -3,14 +3,14 @@
 </div>
 
 ## Introduction
-This project is a fork of gozimhttpd with only the search function and with some corrections.  
+This project is a fork of [gozimhttpd](https://github.com/akhenakh/gozim) with only the search function and with some corrections.  
 This tool also offers a simpler, modern and easy to use interface.  
 This fork also has multilingual interface support.  
 
 ## How to build?
 On Ubuntu/Debian you need those packages to compile WikiSearchAndServe:  
 ```
-apt-get install git liblzma-dev mercurial build-essential
+apt-get install git liblzma-dev mercurial build-essential golang
 ```
 
 For the indexer bleve to work properly it's recommended that you use leveldb as storage:  
